@@ -6,9 +6,9 @@
 - name: create digitalocean droplet
   digital_ocean:
     command: droplet
-    state: present
-    name: "{{ vpn_droplet_name }}"
-    unique_name: true
+    state:
+    name: "{{ droplet_name | mandatory }}"
+    unique_name: "{{ unique_name }}"
 
     size_id: "{{ size_id }}"
     region_id: "{{ region_id }}"
@@ -16,9 +16,8 @@
 
     api_token: "{{ do_api_token }}"
     ssh_key_ids: "{{ do_ssh_key_id }}"
-
     wait_timeout: 200
-  register: vpn_droplet
+  register: new_droplet
   tags:
     - digital_ocean
     - provision
