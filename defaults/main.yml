@@ -9,8 +9,7 @@ do_ssh_key_id: "{{ ansible_env.DO_SSH_KEY_ID }}"
 do_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
 
 
-# By default, ensure that only one droplet with the assigned
-# name exists.
+# Ensure that only one droplet with the assigned name exists.
 unique_name: true
 
 # DigitalOcean instance parameters

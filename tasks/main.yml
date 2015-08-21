@@ -6,7 +6,7 @@
 - name: create digitalocean droplet
   digital_ocean:
     command: droplet
-    state:
+    state: present
     name: "{{ droplet_name | mandatory }}"
     unique_name: "{{ unique_name }}"
 
