@@ -30,10 +30,9 @@ def core(module):
         #dr.create(type='A', name='@', data=ip_address)
 
         current_domains = client.domains.all()
+        d = filter(lambda x: x.get('name') == domain, current_domains)[0]
+        module.exit_json(changed=changed, domain=d)
 
-
-        d = filter(lambda x: x.get('name') == 'conor.io', current_domains)
-        module.exit_json(changed=changed, domain=domain)
 
 def main():
     module = AnsibleModule(
