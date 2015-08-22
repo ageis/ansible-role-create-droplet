@@ -29,3 +29,13 @@
 - name: add new IP to SSH known_hosts
   shell: 'ssh-keyscan -H -T 10 {{ new_droplet.droplet.ip_address }} >> "$HOME/.ssh/known_hosts"'
   when: new_droplet.changed
+
+- debug: var=new_droplet.droplet.ip_address
+- debug: var=hostvars[droplet_name].ansible_ssh_host
+
+- name: set domain name
+  do_domain:
+    domain: "{{ domain_name }}"
+    ip_address: new_droplet.droplet.ip_address
+  when: domain_name is defined and
+        domain_name != ''

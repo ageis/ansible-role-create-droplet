@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+import os
+from distutils.version import LooseVersion
+
+
+HAS_DOSA = True
+try:
+    import dosa
+    if LooseVersion(dosa.__version__) < LooseVersion('0.8'):
+        HAS_DOSA = False
+except ImportError:
+    HAS_DOSA = False
+
+
+API_KEY = os.environ.get('DO_API_TOKEN')
+#dosa.set_debug()  # enables debug logs
+client = dosa.Client(api_key=API_KEY)
+
+
+def core(module):
+
+    changed = True
+    domain = module.params['domain']
+    ip_address = module.params['ip_address']
+    state = module.params['state']
+
+    if state == 'present':
+        #d = client.domains.create(name=domain, ip_address=ip_address)
+        dr = client.DomainRecords(domain=domain)
+        #dr.create(type='A', name='@', data=ip_address)
+
+        current_domains = client.domains.all()
+
+
+        d = filter(lambda x: x.get('name') == 'conor.io', current_domains)
+        module.exit_json(changed=changed, domain=domain)
+
+def main():
+    module = AnsibleModule(
+        argument_spec = dict(
+            domain = dict(type='str', required=True),
+            ip_address = dict(type='str'),
+            state = dict(choices=['active', 'present', 'absent', 'deleted'], default='present'),
+            api_token = dict(aliases=['API_TOKEN'], no_log=True),
+        ),
+
+        required_together = (
+            ['domain', 'ip_address'],
+        ),
+    )
+
+    if not HAS_DOSA:
+        module.fail_json(msg='dosa >= 0.8 required for this module')
+
+    try:
+        core(module)
+    except (Exception), e:
+        module.fail_json(msg=str(e))
+
+# import module snippets
+from ansible.module_utils.basic import *
+
+if __name__ == '__main__':
+    main()
