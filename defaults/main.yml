@@ -5,9 +5,12 @@
 #
 # You'll need to export the following environment variables
 do_api_token: "{{ ansible_env.DO_API_TOKEN }}"
-do_ssh_key_id: "{{ ansible_env.DO_SSH_KEY_ID }}"
 do_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
 
+ssh_key_ids:
+  - 1201280 # conor
+  - 970587 # garrett
+  - 735670 # kevin
 
 # Ensure that only one droplet with the assigned name exists.
 unique_name: true
