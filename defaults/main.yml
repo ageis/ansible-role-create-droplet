@@ -7,10 +7,9 @@
 do_api_token: "{{ ansible_env.DO_API_TOKEN }}"
 do_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
 
+# Must be a list, because it will be joined.
 ssh_key_ids:
-  - 1201280 # conor
-  - 970587 # garrett
-  - 735670 # kevin
+  - 1201006
 
 # Ensure that only one droplet with the assigned name exists.
 unique_name: true
@@ -24,4 +23,3 @@ size_id: "512mb"
 # Ubuntu 14.04 64-bit has slug "ubuntu-14-04-x64" and id "13089493"
 # Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
 image_id: "ubuntu-14-04-x64"
-image_id: "debian-8-x64"
