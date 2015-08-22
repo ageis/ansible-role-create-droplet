@@ -25,12 +25,19 @@ def core(module):
     state = module.params['state']
 
     if state == 'present':
-        #d = client.domains.create(name=domain, ip_address=ip_address)
-        dr = client.DomainRecords(domain=domain)
-        #dr.create(type='A', name='@', data=ip_address)
+        initial_domains = client.domains.all()
+        if map(lambda x: x['name'] == domain, initial_domains):
+            # domain already exists
+            pass
+            dr = client.DomainRecords(domain=domain)
+            dr.create(type='A', name='@', data=ip_address)
+        else:
+            # domain does NOT exist
+            d = client.domains.create(name=domain, ip_address=ip_address)
 
-        current_domains = client.domains.all()
-        d = filter(lambda x: x.get('name') == domain, current_domains)[0]
+
+
+        d = filter(lambda x: x.get('name') == domain, initial_domains)[0]
         module.exit_json(changed=changed, domain=d)
 
 
