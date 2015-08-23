@@ -24,5 +24,6 @@ size_id: "512mb"
 # Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
 image_id: "ubuntu-14-04-x64"
 
+wait: true
 wait_timeout: "300"
 

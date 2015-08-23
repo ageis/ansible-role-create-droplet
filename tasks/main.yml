@@ -16,6 +16,7 @@
 
     api_token: "{{ do_api_token }}"
     ssh_key_ids: "{{ ssh_key_ids | join(',') }}"
+    wait: "{{ wait }}"
     wait_timeout: "{{ wait_timeout }}"
   register: new_droplet
   tags:
