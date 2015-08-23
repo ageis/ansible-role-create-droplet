@@ -38,8 +38,8 @@
      so it's included in the inventory.
   when: new_droplet.changed
 
-- debug: var=new_droplet.droplet.ip_address
-- debug: var=hostvars[droplet_name].ansible_ssh_host
+- pause: pausing playbook for abort
+  when: new_droplet.changed
 
 - name: set domain name
   do_domain:
