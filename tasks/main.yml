@@ -16,7 +16,7 @@
 
     api_token: "{{ do_api_token }}"
     ssh_key_ids: "{{ ssh_key_ids | join(',') }}"
-    wait_timeout: 200
+    wait_timeout: "{{ wait_timeout }}"
   register: new_droplet
   tags:
     - digital_ocean
@@ -28,6 +28,13 @@
 
 - name: add new IP to SSH known_hosts
   shell: 'ssh-keyscan -H -T 10 {{ new_droplet.droplet.ip_address }} >> "$HOME/.ssh/known_hosts"'
+  when: new_droplet.changed
+
+- name: add droplet to inventory
+  debug:
+    msg: >
+     Created new host '{{ droplet_name }}'. Rerun this playbook
+     so it's included in the inventory.
   when: new_droplet.changed
 
 - debug: var=new_droplet.droplet.ip_address
