@@ -21,8 +21,11 @@ unique_name: true
 region_id: "sfo1"
 size_id: "512mb"
 # Ubuntu 14.04 64-bit has slug "ubuntu-14-04-x64" and id "13089493"
+# image_id: "13089493"
+# Prebuilt box with dotfiles has slug "conorbox-hardened-1440487720" and id "13277878"
+# image_id: "conorbox-hardened-1440490363"
 # Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
-image_id: "ubuntu-14-04-x64"
+image_id: "12778278"
 
 wait: true
 wait_timeout: "300"
