@@ -32,14 +32,21 @@
   when: new_droplet.changed
 
 - name: add droplet to inventory
+  add_host:
+    name: "{{ droplet_name }}"
+    groups: "{{ droplet_groups }}"
+  when: droplet_groups is defined and droplet_groups != ''
+
+- name: warn about adding droplet to inventory
   debug:
     msg: >
      Created new host '{{ droplet_name }}'. Rerun this playbook
      so it's included in the inventory.
   when: new_droplet.changed
 
-- pause: pausing playbook for abort
-  when: new_droplet.changed
+
+
+
 
 - name: set domain name
   do_domain:
