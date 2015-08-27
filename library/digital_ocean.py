@@ -408,14 +408,10 @@ def main():
             state = dict(choices=['active', 'present', 'absent', 'deleted'], default='present'),
             api_token = dict(aliases=['API_TOKEN'], no_log=True),
             name = dict(type='str'),
-
-
-
-            size_id = dict(default='512mb'),
-            image_id = dict(default='ubuntu-14-04-x64'),
-            region_id = dict(default='sfo1'),
-            ssh_key_ids = dict(type='list', default='1201006'),
-
+            size_id = dict(),
+            image_id = dict(),
+            region_id = dict(),
+            ssh_key_ids = dict(type='list'),
             virtio = dict(type='bool', default='yes'),
             private_networking = dict(type='bool', default='no'),
             backups_enabled = dict(type='bool', default='no'),
