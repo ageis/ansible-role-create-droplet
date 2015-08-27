@@ -13,6 +13,7 @@
     size_id: "{{ size_id }}"
     region_id: "{{ region_id }}"
     image_id: "{{ image_id }}"
+    private_networking: "{{ droplet_private_networking }}"
 
     api_token: "{{ do_api_token }}"
     ssh_key_ids: "{{ ssh_key_ids | join(',') }}"

@@ -7,6 +7,10 @@
 do_api_token: "{{ ansible_env.DO_API_TOKEN }}"
 do_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
 
+# Enable private networking by default,
+# for log aggregation and monitoring.
+droplet_private_networking: true
+
 # Must be a list, because it will be joined.
 ssh_key_ids:
   - 1201006
