@@ -8,17 +8,17 @@
     command: droplet
     state: present
     name: "{{ droplet_name | mandatory }}"
-    unique_name: "{{ unique_name }}"
+    unique_name: "{{ droplet_unique_name }}"
 
-    size_id: "{{ size_id }}"
-    region_id: "{{ region_id }}"
-    image_id: "{{ image_id }}"
+    size_id: "{{ droplet_size_id }}"
+    region_id: "{{ droplet_region_id }}"
+    image_id: "{{ droplet_image_id }}"
     private_networking: "{{ droplet_private_networking }}"
 
-    api_token: "{{ do_api_token }}"
-    ssh_key_ids: "{{ ssh_key_ids | join(',') }}"
-    wait: "{{ wait }}"
-    wait_timeout: "{{ wait_timeout }}"
+    api_token: "{{ digitalocean_api_token }}"
+    ssh_key_ids: "{{ digitalocean_ssh_key_ids | join(',') }}"
+    wait: "{{ droplet_wait }}"
+    wait_timeout: "{{ droplet_wait_timeout }}"
   register: new_droplet
   tags:
     - digital_ocean

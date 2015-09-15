@@ -4,33 +4,34 @@
 # do_client_id: ansible_env.VAR # YOUR_CLIENT_ID_HERE
 #
 # You'll need to export the following environment variables
-do_api_token: "{{ ansible_env.DO_API_TOKEN }}"
-do_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
+digitalocean_api_token: "{{ ansible_env.DO_API_TOKEN }}"
+digitalocean_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
+
+# Must be a list, because it will be joined.
+# Haven't found a decent way to automate this yet, which
+# bothers me to no end.
+digitalocean_ssh_key_ids:
+  - 1201006
 
 # Enable private networking by default,
 # for log aggregation and monitoring.
 droplet_private_networking: true
 
-# Must be a list, because it will be joined.
-ssh_key_ids:
-  - 1201006
-
 # Ensure that only one droplet with the assigned name exists.
-unique_name: true
+droplet_unique_name: true
 
 # DigitalOcean instance parameters
 # As of v2 of Ansible module (bundled with this role),
 # you can use slug strings for API parameter values,
 # rather than integer IDs.
-region_id: "sfo1"
-size_id: "512mb"
+droplet_region_id: "sfo1"
+droplet_size_id: "512mb"
+
 # Ubuntu 14.04 64-bit has slug "ubuntu-14-04-x64" and id "13089493"
 # image_id: "13089493"
 # Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
 # image_id: "12778278"
-# conorbox-debian (prebuilt with keys and hardening) has id 13342860
-image_id: "13342860"
-
-wait: true
-wait_timeout: "300"
+droplet_image_id: "13351927"
+droplet_wait: true
+droplet_wait_timeout: "300"
 
