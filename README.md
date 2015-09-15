@@ -1,5 +1,6 @@
 # ansible-role-create-droplet
-Ansible role for creating DigitalOcean droplets.
+Ansible role for creating DigitalOcean droplets,
+with an emphasis on sane defaults for parameters.
 
 ## Overview
 The motivation for this role was frustration around the fact that
@@ -39,5 +40,7 @@ as a surrogate module makes referencing default variables possible.
         droplet_name: testbox,
       }
 ```
-Pleasantly less verbose, no?
+Ah, that's better!
 
+## License
+MIT
