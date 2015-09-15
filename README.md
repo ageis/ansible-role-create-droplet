@@ -27,5 +27,17 @@ is unnecessarily verbose:
 
 The only new variable in the above block is `name: testbox`.
 All other variables should reference defaults. Using a role
-as a surrogate module makes this possible.
+as a surrogate module makes referencing default variables possible.
+
+## Usage
+
+```
+- name: create digitalocean droplet
+  hosts: localhost
+  roles:
+    - { role: create-droplet,
+        droplet_name: testbox,
+      }
+```
+Pleasantly less verbose, no?
 
