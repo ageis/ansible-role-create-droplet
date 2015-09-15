@@ -16,7 +16,10 @@
     private_networking: "{{ droplet_private_networking }}"
 
     api_token: "{{ digitalocean_api_token }}"
-    ssh_key_ids: "{{ digitalocean_ssh_key_ids | join(',') }}"
+    # Oddly, the Ansible docs say that `ssh_key_ids` should be
+    # a comma-separated list, but passing in a YAML list works.
+    #ssh_key_ids: "{{ digitalocean_ssh_key_ids | join(',') }}"
+    ssh_key_ids: "{{ digitalocean_ssh_key_ids }}"
     wait: "{{ droplet_wait }}"
     wait_timeout: "{{ droplet_wait_timeout }}"
   register: new_droplet
