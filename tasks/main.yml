@@ -45,12 +45,13 @@
   debug:
     msg: >
      Created new host '{{ droplet_name }}'. Rerun this playbook
-     so it's included in the inventory.
+     so it's included in the inventory. Ansible doesn't reload
+     group_vars for hosts that have been added to the inventory
+     dynamically, so while {{ droplet_name }} is currently a member
+     of `play_hosts`, no group_vars are associated with it yet.
+     This may prevent DigitalOcean settings such as username or
+     SSH key from being set appropriately.
   when: new_droplet.changed
-
-
-
-
 
 - name: set domain name
   do_domain:
