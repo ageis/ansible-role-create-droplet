@@ -2,7 +2,9 @@
 galaxy_info:
   author: Conor Schaefer
   description: Wrapper for provisioning DigitalOcean droplets.
+  categories:
+    - cloud
+    - development
   license: MIT
-  min_ansible_version: 1.2
-
+  min_ansible_version: 1.5
 dependencies: []
