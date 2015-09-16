@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+require 'barge'
+
+
+token = ENV['DO_API_TOKEN']
+barge = Barge::Client.new(access_token: token)
+
+keys = barge.key.all
+key_ids = keys.ssh_keys.map { |k| k.id }
+
+if key_ids.length == 1
+  puts key_ids.first
+elsif key_ids.length > 1
+  puts <<-eos
+  DigitalOcean API returned multiple SSH keys.
+  Not sure which to include. Specify an edit
+  eos
+  exit(1)
+else
+  puts <<-eos
+  DigitalOcean API returned no SSH keys.
+  Log into your account and add one:
+  https://cloud.digitalocean.com/settings/security
+  eos
+  exit(2)
+end
+
