@@ -1,0 +1,7 @@
+---
+- name: Query DigitalOcean API for SSH key ids.
+  script: do-listkeys
+  register: do_listkeys_result
+  changed_when: false
+
+- debug: var={{do_listkeys_result.stdout|trim}}

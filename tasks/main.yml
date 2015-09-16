@@ -1,0 +1,7 @@
+---
+- include: fetch_ssh_key_ids.yml
+  when: "digitalocean_ssh_key_ids is not defined"
+
+- include: create_droplet.yml
+
+
