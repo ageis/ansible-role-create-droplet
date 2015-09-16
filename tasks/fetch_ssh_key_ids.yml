@@ -1,4 +1,8 @@
 ---
+- name: Install 'barge' gem for querying DigitalOcean API.
+  gem:
+    name: barge
+
 - name: Query DigitalOcean API for SSH key ids.
   script: do-listkeys
   register: do_listkeys_result
