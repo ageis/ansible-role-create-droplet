@@ -4,4 +4,7 @@
   register: do_listkeys_result
   changed_when: false
 
-- debug: var={{do_listkeys_result.stdout|trim}}
+- name: Set fetched SSH key id as host fact.
+  set_fact:
+    digitalocean_ssh_key_ids:
+      - "{{ do_listkeys_result.stdout | trim }}"
