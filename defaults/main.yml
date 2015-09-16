@@ -8,10 +8,11 @@ digitalocean_api_token: "{{ ansible_env.DO_API_TOKEN }}"
 digitalocean_ssh_key_file: "{{ ansible_env.DO_SSH_KEY_FILE }}"
 
 # Must be a list, because it will be joined.
-# Haven't found a decent way to automate this yet, which
-# bothers me to no end.
-digitalocean_ssh_key_ids:
-  - 1201006
+# digitalocean_ssh_key_ids:
+# - 1
+# - 2
+# If `digitalocean_ssh_key_ids` is not defined,
+# the role will query the API to an existing key_id and use that.
 
 # Enable private networking by default,
 # for log aggregation and monitoring.
