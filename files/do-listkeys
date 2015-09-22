@@ -13,8 +13,9 @@ if key_ids.length == 1
 elsif key_ids.length > 1
   puts <<-eos
   DigitalOcean API returned multiple SSH keys.
-  Not sure which to include. Specify an edit
+  Not sure which to include. Specify one of the following keys:
   eos
+  puts key_ids
   exit(1)
 else
   puts <<-eos

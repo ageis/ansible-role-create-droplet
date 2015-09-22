@@ -2,6 +2,7 @@
 - name: Install 'barge' gem for querying DigitalOcean API.
   gem:
     name: barge
+    state: present
 
 - name: Query DigitalOcean API for SSH key ids.
   script: do-listkeys
@@ -11,4 +12,6 @@
 - name: Set fetched SSH key id as host fact.
   set_fact:
     digitalocean_ssh_key_ids:
+      # The 'trim' filter is necessary here because the `script`
+      # module preserves newlines on STDOUT, whereas `command` does not.
       - "{{ do_listkeys_result.stdout | trim }}"
