@@ -1,9 +1,9 @@
 ---
 # dopy is required for ansible digital_ocean module
-- name: ensure dopy is installed (for digitalocean API)
+- name: Install dopy (required for DigitalOcean API).
   easy_install: name=dopy
 
-- name: create digitalocean droplet
+- name: Create DigitalOcean droplet.
   digital_ocean:
     command: droplet
     state: present
@@ -27,21 +27,21 @@
     - digital_ocean
     - provision
 
-- name: flush old IPs from SSH known_hosts
+- name: Flush old IPs from SSH known_hosts file.
   shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{ new_droplet.droplet.ip_address }}'
   when: new_droplet.changed
 
-- name: add new IP to SSH known_hosts
+- name: Add new IP to SSH known_hosts file.
   shell: 'ssh-keyscan -H -T 10 {{ new_droplet.droplet.ip_address }} >> "$HOME/.ssh/known_hosts"'
   when: new_droplet.changed
 
-- name: add droplet to inventory
+- name: Add droplet to Ansible inventory.
   add_host:
     name: "{{ droplet_name }}"
     groups: "{{ droplet_groups }}"
   when: droplet_groups is defined and droplet_groups != ''
 
-- name: warn about adding droplet to inventory
+- name: Warn about adding droplet to Ansible inventory.
   debug:
     msg: >
      Created new host '{{ droplet_name }}'. Rerun this playbook
@@ -50,10 +50,11 @@
      dynamically, so while {{ droplet_name }} is currently a member
      of `play_hosts`, no group_vars are associated with it yet.
      This may prevent DigitalOcean settings such as username or
-     SSH key from being set appropriately.
+     SSH key from being set appropriately. Note that in Ansible 2.0,
+     a new meta handler will permit refreshing the inventory via a task.
   when: new_droplet.changed
 
-- name: set domain name
+- name: Set domain name via DigitalOcean if necessary.
   do_domain:
     domain: "{{ domain_name }}"
     ip_address: new_droplet.droplet.ip_address
