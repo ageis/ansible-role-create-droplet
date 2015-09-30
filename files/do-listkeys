@@ -6,7 +6,8 @@ token = ENV['DO_API_TOKEN']
 barge = Barge::Client.new(access_token: token)
 
 keys = barge.key.all
-key_ids = keys.ssh_keys.map { |k| k.id }
+ssh_keys = keys.ssh_keys
+key_ids = ssh_keys.map { |k| k.id }
 
 if key_ids.length == 1
   puts key_ids.first
@@ -15,7 +16,8 @@ elsif key_ids.length > 1
   DigitalOcean API returned multiple SSH keys.
   Not sure which to include. Specify one of the following keys:
   eos
-  puts key_ids
+  named_keys = ssh_keys.map{ |k| { :name => k.name, :id => k.id } }
+  puts named_keys
   exit(1)
 else
   puts <<-eos
