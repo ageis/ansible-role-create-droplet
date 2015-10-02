@@ -1,0 +1,9 @@
+---
+- name: Flush old IPs from SSH known_hosts file.
+  shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{ new_droplet.droplet.ip_address }}'
+  when: new_droplet.changed
+
+- name: Add new IP to SSH known_hosts file.
+  shell: 'ssh-keyscan -H -T 10 {{ new_droplet.droplet.ip_address }} >> "$HOME/.ssh/known_hosts"'
+  when: new_droplet.changed
+

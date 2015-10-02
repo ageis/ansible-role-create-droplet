@@ -4,4 +4,7 @@
 
 - include: create_droplet.yml
 
+- include: manage_host_keys.yml
+- include: manage_inventory.yml
+
 
