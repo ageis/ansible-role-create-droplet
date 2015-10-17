@@ -18,7 +18,8 @@
      This may prevent DigitalOcean settings such as username or
      SSH key from being set appropriately. Note that in Ansible 2.0,
      a new meta handler will permit refreshing the inventory via a task.
-  when: new_droplet.changed
+  when: new_droplet.changed and
+        not droplet_groups
 
 - name: Set domain name via DigitalOcean if necessary.
   do_domain:

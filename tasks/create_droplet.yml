@@ -3,6 +3,11 @@
 - name: Install dopy (required for DigitalOcean API).
   easy_install: name=dopy
 
+- name: Display image_id used for droplet creation.
+  debug:
+    msg: >
+      Creating droplet from image_id {{ droplet_image_id }}
+
 - name: Create DigitalOcean droplet.
   digital_ocean:
     command: droplet
