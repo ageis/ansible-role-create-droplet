@@ -32,4 +32,4 @@ droplet_size_id: "512mb"
 droplet_image_id: "12778278"
 droplet_wait: true
 droplet_wait_timeout: "300"
-
+droplet_extra_wait_time: "0"

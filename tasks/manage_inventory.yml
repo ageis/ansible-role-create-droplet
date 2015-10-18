@@ -21,3 +21,8 @@
      a new meta handler will permit refreshing the inventory via a task.
   when: new_droplet.changed and
         not droplet_groups
+
+- name: Wait longer to ensure SSH service is up and running.
+  pause:
+    seconds: "{{ droplet_extra_wait_time }}"
+  when: droplet_extra_wait_time > 0
