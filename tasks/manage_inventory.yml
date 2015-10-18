@@ -3,13 +3,12 @@
   add_host:
     name: "{{ droplet_name }}"
     ansible_ssh_host: "{{ new_droplet.droplet.ip_address }}"
-    ansible_ssh_user: root
     groups: "{{ droplet_groups }}"
   when: new_droplet.changed and
         droplet_groups is defined and
         droplet_groups != ''
 
-- name: Warn about adding droplet to Ansible inventory.
+- name: Display message about adding droplet to Ansible inventory.
   debug:
     msg: >
      Created new host '{{ droplet_name }}'. Rerun this playbook
@@ -22,10 +21,3 @@
      a new meta handler will permit refreshing the inventory via a task.
   when: new_droplet.changed and
         not droplet_groups
-
-- name: Set domain name via DigitalOcean if necessary.
-  do_domain:
-    domain: "{{ domain_name }}"
-    ip_address: new_droplet.droplet.ip_address
-  when: domain_name is defined and
-        domain_name != ''
