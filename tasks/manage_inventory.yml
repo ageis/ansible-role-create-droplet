@@ -5,7 +5,9 @@
     ansible_ssh_host: "{{ new_droplet.droplet.ip_address }}"
     ansible_ssh_user: root
     groups: "{{ droplet_groups }}"
-  when: droplet_groups is defined and droplet_groups != ''
+  when: new_droplet.changed and
+        droplet_groups is defined and
+        droplet_groups != ''
 
 - name: Warn about adding droplet to Ansible inventory.
   debug:
