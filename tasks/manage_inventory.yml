@@ -20,7 +20,8 @@
      SSH key from being set appropriately. Note that in Ansible 2.0,
      a new meta handler will permit refreshing the inventory via a task.
   when: new_droplet.changed and
-        not droplet_groups
+        droplet_groups is defined and
+        droplet_groups != ''
 
 - name: Wait longer to ensure SSH service is up and running.
   pause:
