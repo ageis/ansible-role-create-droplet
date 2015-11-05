@@ -18,8 +18,8 @@ is unnecessarily verbose:
 
     size_id: 512mb
     region_id: sfo1
-    # Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
-    image_id: "12778278"
+    # Debian 8 64-bit has slug "debian-8-x64" and id "14169880"
+    image_id: "14169880"
     private_networking: true
 
     api_token: "{{ digitalocean_api_token }}"

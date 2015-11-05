@@ -28,8 +28,8 @@ droplet_region_id: "sfo1"
 droplet_size_id: "512mb"
 
 # Ubuntu 14.04 64-bit has slug "ubuntu-14-04-x64" and id "13089493"
-# Debian 8 64-bit has slug "debian-8-x64" and id "12778278"
-droplet_image_id: "12778278"
+# Debian 8 64-bit has slug "debian-8-x64" and id "14169880"
+droplet_image_id: "14169880"
 droplet_wait: true
 droplet_wait_timeout: "300"
 droplet_extra_wait_time: "0"
